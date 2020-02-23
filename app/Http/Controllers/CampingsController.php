@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Camping;
 
 class CampingsController extends Controller
 {
@@ -13,7 +14,14 @@ class CampingsController extends Controller
      */
     public function index()
     {
-        //
+        $campings_by_date_desc = Camping::orderBy('created_at', 'desc')->paginate(2);
+        $campings_by_date_asc = Camping::orderBy('created_at', 'asc')->take(2)->get();
+        $campings = [
+            'campings_by_date_desc' => $campings_by_date_desc,
+            'campings_by_date_asc' => $campings_by_date_asc,
+        ];
+
+        return view('campings.index')->with('campings', $campings);
     }
 
     /**
@@ -23,7 +31,7 @@ class CampingsController extends Controller
      */
     public function create()
     {
-        //
+        return view('campings.create');
     }
 
     /**
@@ -34,7 +42,19 @@ class CampingsController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $this->validate($request, [
+            'name' => 'required',
+            'city' => 'required',
+            'country' => 'required',
+        ]);
+
+        $camping = new Camping;
+        $camping->name = $request->input('name');
+        $camping->city = $request->input('city');
+        $camping->country = $request->input('country');
+        $camping->save();
+
+        return redirect('/campings')->with('success', 'Camping Created!');
     }
 
     /**
@@ -45,7 +65,8 @@ class CampingsController extends Controller
      */
     public function show($id)
     {
-        //
+        $camping = Camping::find($id);
+        return view('campings.show')->with('camping', $camping);
     }
 
     /**
@@ -56,7 +77,8 @@ class CampingsController extends Controller
      */
     public function edit($id)
     {
-        //
+        $camping = Camping::find($id);
+        return view('campings.edit')->with('camping', $camping);
     }
 
     /**
@@ -68,7 +90,19 @@ class CampingsController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $this->validate($request, [
+            'name' => 'required',
+            'city' => 'required',
+            'country' => 'required',
+        ]);
+
+        $camping = Camping::find($id);
+        $camping->name = $request->input('name');
+        $camping->city = $request->input('city');
+        $camping->country = $request->input('country');
+        $camping->save();
+
+        return redirect('/campings')->with('success', 'Camping Updated!');
     }
 
     /**
@@ -79,6 +113,8 @@ class CampingsController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $camping = Camping::find($id);
+        $camping->delete();
+        return redirect('/campings')->with('success', 'Camping Removed :(');
     }
 }

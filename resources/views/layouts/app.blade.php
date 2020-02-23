@@ -7,6 +7,7 @@
         <title>{{config('app.name', 'Camping App')}}</title>
     </head>
     <body>
+        @include('inc.messages')
         @yield('content')
     </body>
 </html>
