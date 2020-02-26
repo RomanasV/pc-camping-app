@@ -15,6 +15,7 @@
                             {{$camping->name}}
                         </a>
                     <h3>
+                    <img src="/storage/placeholder_images/{{$camping->placeholder_image}}">
                     <p>{{$camping->city}}, {{$camping->country}}</p>
                     @if ($camping->stars == 1)
                         <span>{{$camping->stars}} star</span>

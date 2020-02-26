@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Storage;
 use App\Camping;
 
 class CampingsController extends Controller
@@ -58,7 +59,18 @@ class CampingsController extends Controller
             'country' => 'required',
             'stars' => 'required|max:255',
             'website' => 'required',
+            'placeholder_image' => 'image|nullable|max:1999'
         ]);
+
+        if($request->hasFile('placeholder_image')) {
+            $uploaded_image_name = $request->file('placeholder_image')->getClientOriginalName();
+            $image_name = pathinfo($uploaded_image_name, PATHINFO_FILENAME);
+            $image_extension = $request->file('placeholder_image')->getClientOriginalExtension();
+            $image_name_to_store = $image_name . '_' . time() . '.' . $image_extension;
+            $path = $request->file('placeholder_image')->storeAs('public/placeholder_images', $image_name_to_store);
+        } else {
+            $image_name_to_store = 'default_placeholder.jpg';
+        }
 
         $camping = new Camping;
         $camping->name = $request->input('name');
@@ -67,6 +79,7 @@ class CampingsController extends Controller
         $camping->stars = $request->input('stars');
         $camping->website = $request->input('website');
         $camping->user_id = auth()->user()->id;
+        $camping->placeholder_image = $image_name_to_store;
         $camping->save();
 
         return redirect('/campings')->with('success', 'Camping Created!');
@@ -111,7 +124,16 @@ class CampingsController extends Controller
             'country' => 'required',
             'stars' => 'required|max:255',
             'website' => 'required',
+            'placeholder_image' => 'image|nullable|max:1999'
         ]);
+
+        if($request->hasFile('placeholder_image')) {
+            $uploaded_image_name = $request->file('placeholder_image')->getClientOriginalName();
+            $image_name = pathinfo($uploaded_image_name, PATHINFO_FILENAME);
+            $image_extension = $request->file('placeholder_image')->getClientOriginalExtension();
+            $image_name_to_store = $image_name . '_' . time() . '.' . $image_extension;
+            $path = $request->file('placeholder_image')->storeAs('public/placeholder_images', $image_name_to_store);
+        }
 
         $camping = Camping::find($id);
         $camping->name = $request->input('name');
@@ -119,6 +141,10 @@ class CampingsController extends Controller
         $camping->country = $request->input('country');
         $camping->stars = $request->input('stars');
         $camping->website = $request->input('website');
+        if($request->hasFile('placeholder_image')) {
+            Storage::delete('/public/placeholder_images/' . $camping->placeholder_image);
+            $camping->placeholder_image = $image_name_to_store;
+        }
         $camping->save();
 
         return redirect('/campings')->with('success', 'Camping Updated!');
@@ -133,6 +159,11 @@ class CampingsController extends Controller
     public function destroy($id)
     {
         $camping = Camping::find($id);
+
+        if($camping->placeholder_image != 'default_placeholder.jpg'){
+            Storage::delete('/public/placeholder_images/' . $camping->placeholder_image);
+        }
+
         $camping->delete();
         return redirect('/campings')->with('success', 'Camping Removed :(');
     }

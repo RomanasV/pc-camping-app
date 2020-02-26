@@ -4,6 +4,7 @@
     <a href="/campings">Go Back</a>
     <div>
         <h1>{{$camping->name}}</h1>
+        <img src="/storage/placeholder_images/{{$camping->placeholder_image}}">
         <small>{{$camping->city}}, {{$camping->country}}</small>
         @if ($camping->stars == 1)
             <span>{{$camping->stars}} star</span>
