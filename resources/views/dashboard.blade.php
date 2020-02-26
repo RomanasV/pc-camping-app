@@ -30,6 +30,8 @@
                 <thead>
                     <tr>
                         <th>Title</th>
+                        <th>Created by</th>
+                        <th>Created on</th>
                         <th></th>
                         <th></th>
                     </tr>
@@ -38,6 +40,13 @@
                     <tr>
                         @foreach ($campings as $camping)
                             <td><a href="/campings/{{$camping->id}}">{{$camping->name}}</a></td>
+                            <td>{{$camping->user->name}}</td>
+                            <td>
+                                {{$camping->created_at}}
+                                @if ($camping->updated_at > $camping->created_at)
+                                    <span>Last edited: {{$camping->updated_at}}</span>
+                                @endif
+                            </td>
                             <td><a href="/campings/{{$camping->id}}/edit">Edit</a></td>
                             <td>
                                 {!! Form::open(['action' => ['CampingsController@destroy', $camping->id], 'method' => 'POST']) !!}

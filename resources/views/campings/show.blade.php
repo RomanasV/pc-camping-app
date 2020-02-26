@@ -12,10 +12,12 @@
         @endif
         <a href="{{$camping->website}}">Book Now</a>
     </div>
-    <a href="/campings/{{$camping->id}}/edit">Edit</a>
-
-    {!! Form::open(['action' => ['CampingsController@destroy', $camping->id], 'method' => 'POST']) !!}
+    @if (!Auth::guest())
+        <a href="/campings/{{$camping->id}}/edit">Edit</a>
+        
+        {!! Form::open(['action' => ['CampingsController@destroy', $camping->id], 'method' => 'POST']) !!}
         {{ Form::hidden('_method', 'DELETE') }}
         {{ Form::submit('Delete', ['class' => 'btn']) }}
-    {!! Form::close() !!}
+        {!! Form::close() !!}
+    @endif
 @endsection

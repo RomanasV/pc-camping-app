@@ -3,7 +3,9 @@
 @section('content')
     @if (count($campings['campings_by_date_desc']) > 0)
         <div>
-            <a href="/campings/create">Create Post</a>
+            @if (!Auth::guest())
+                <a href="/campings/create">Create Post</a>
+            @endif
 
             <h1>Posts by date desc:</h1>
             @foreach ($campings['campings_by_date_desc'] as $camping)
@@ -20,6 +22,15 @@
                         <span>{{$camping->stars}} stars</span>
                     @endif
                     <a href="{{$camping->website}}">Book Now</a>
+                    @if (!Auth::guest())
+                        {{-- Add an edit and delete icons in this place --}}
+                        <a href="/campings/{{$camping->id}}/edit">Edit</a>
+                        
+                        {!! Form::open(['action' => ['CampingsController@destroy', $camping->id], 'method' => 'POST']) !!}
+                            {{ Form::hidden('_method', 'DELETE') }}
+                            {{ Form::submit('Delete', ['class' => 'btn']) }}
+                        {!! Form::close() !!}
+                    @endif
                 </div>
             @endforeach
             {{$campings['campings_by_date_desc']->links()}}
