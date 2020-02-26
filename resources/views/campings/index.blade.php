@@ -14,6 +14,12 @@
                         </a>
                     <h3>
                     <p>{{$camping->city}}, {{$camping->country}}</p>
+                    @if ($camping->stars == 1)
+                        <span>{{$camping->stars}} star</span>
+                    @else
+                        <span>{{$camping->stars}} stars</span>
+                    @endif
+                    <a href="{{$camping->website}}">Book Now</a>
                 </div>
             @endforeach
             {{$campings['campings_by_date_desc']->links()}}
@@ -29,6 +35,12 @@
                         </a>
                     <h3>
                     <p>{{$camping->city}}, {{$camping->country}}</p>
+                    @if ($camping->stars == 1)
+                        <span>{{$camping->stars}} star</span>
+                    @else
+                        <span>{{$camping->stars}} stars</span>
+                    @endif
+                    <a href="{{$camping->website}}">Book Now</a>
                 </div>
             @endforeach
         </div>

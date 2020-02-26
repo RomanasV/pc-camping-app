@@ -5,6 +5,12 @@
     <div>
         <h1>{{$camping->name}}</h1>
         <small>{{$camping->city}}, {{$camping->country}}</small>
+        @if ($camping->stars == 1)
+            <span>{{$camping->stars}} star</span>
+        @else
+            <span>{{$camping->stars}} stars</span>
+        @endif
+        <a href="{{$camping->website}}">Book Now</a>
     </div>
     <a href="/campings/{{$camping->id}}/edit">Edit</a>
 

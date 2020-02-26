@@ -12,8 +12,14 @@
            
             {{ Form::label('title', 'Country') }}
             {{ Form::text('country', '', ['class' => 'form-control', 'placeholder' => 'Country']) }}
+           
+            {{ Form::label('title', 'Website') }}
+            {{ Form::url('website', '', ['class' => 'form-control', 'placeholder' => 'Website']) }}
+           
+            {{ Form::label('title', 'Stars') }}
+            {{Form::selectRange('stars', 1, 5) }}
 
-            {{ Form::submit('Submit', ['class' => 'btn'])}}
+            {{ Form::submit('Submit', ['class' => 'btn']) }}
         </div>
     {!! Form::close() !!}
 @endsection

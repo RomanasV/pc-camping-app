@@ -46,12 +46,17 @@ class CampingsController extends Controller
             'name' => 'required',
             'city' => 'required',
             'country' => 'required',
+            'stars' => 'required|max:255',
+            'website' => 'required',
         ]);
 
         $camping = new Camping;
         $camping->name = $request->input('name');
         $camping->city = $request->input('city');
         $camping->country = $request->input('country');
+        $camping->stars = $request->input('stars');
+        $camping->website = $request->input('website');
+        $camping->user_id = auth()->user()->id;
         $camping->save();
 
         return redirect('/campings')->with('success', 'Camping Created!');
@@ -94,12 +99,16 @@ class CampingsController extends Controller
             'name' => 'required',
             'city' => 'required',
             'country' => 'required',
+            'stars' => 'required|max:255',
+            'website' => 'required',
         ]);
 
         $camping = Camping::find($id);
         $camping->name = $request->input('name');
         $camping->city = $request->input('city');
         $camping->country = $request->input('country');
+        $camping->stars = $request->input('stars');
+        $camping->website = $request->input('website');
         $camping->save();
 
         return redirect('/campings')->with('success', 'Camping Updated!');
