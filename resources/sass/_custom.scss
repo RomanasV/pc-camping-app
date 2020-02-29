@@ -1,1 +1,325 @@
+@import url('https://fonts.googleapis.com/css?family=Varela&display=swap&subset=latin-ext');
+
+$colors: (
+    base: #2c3643,
+    black: black,
+    white: white,
+    border: #ebebeb,
+    primary: #fc4c02,
+    primary-lighter: lighten(#fc4c02, 5%),
+    primary-light: lighten(#fc4c02, 15%),
+    primary-darker: darken(#fc4c02, 3%),
+    primary-dark: darken(#fc4c02, 10%),
+    ranking-star: #fac917,
+    tag-color: #b3b0ac,
+    tag-color-darker: darken(#b3b0ac, 5%),
+    tag-color-dark: darken(#b3b0ac, 15%),
+    tag-bg: #f1f1f1,
+    tag-bg-darker: darken(#f1f1f1, 5%),
+    tag-bg-dark: darken(#f1f1f1, 15%),
+);
+
+$padding-card: 15px 15px 25px;
+$padding-button: 1.1em;
+
+@function color($color-name) {
+    @return map-get($colors, $color-name);
+}
+
+$small: 450px;
+$medium: 550px;
+$large: 950px;
+
+@mixin small {
+    @media (min-width: #{$small}) {
+        @content;
+    }
+}
+
+@mixin medium {
+    @media (min-width: #{$medium}) {
+        @content;
+    }
+}
+
+@mixin large {
+    @media (min-width: #{$large}) {
+        @content;
+    }
+}
+
+html {
+    font-family: 'Varela', sans-serif;
+    font-size: 14px;
+    color: color(base);
+
+    a, h1, h2, h3, h4, h5, h6 {
+        margin: 0;
+    }
+
+    h2, h3 {
+        font-size: 1.2em;
+    }
+}
+
+ul {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    color: color(base);
+
+    &.pagination {
+        display: flex;
+        justify-content: center;
+
+        li.page-item {
+            color: color(base)
+        }
+    }
+}
+
+img {
+    object-fit: cover;
+    width: 100%;
+}
+
+.center {
+    text-align: center;
+}
+
+a {
+    text-decoration: none;
+
+    &.center {
+        text-align: center;
+        display: block;
+    }
+
+    &.link {
+        text-decoration: none;
+        color: color(primary);
+        vertical-align: middle;
+
+        &:hover {
+            color: color(primary-darker)
+        }
+
+        &:active {
+            color: color(primary-dark)
+        }
+
+        &:first-of-type:after {
+            content: '';
+            display: inline-block;
+            height: 0.4em;
+            width: 0.4em;
+            border-radius: 50%;
+            background: color(primary);
+            vertical-align: middle;
+            margin: 0 0.45em;
+        }
+    }
+
+    &.button {
+        display: block;
+        padding: $padding-button;
+        margin: 1.3em 0 1.2em;
+        text-align: center;
+        border-radius: 5px;
+        
+        &.button-tag {
+            display: inline-block;
+            color: color(tag-color);
+            background: color(tag-bg);
+            font-size: 0.85em;
+            padding: 0.9em 0.65em;
+            margin: 0.65em 0.65em 0 0;
+            border-radius: 2px;
+            
+            &:hover {
+                color: color(tag-color-darker);
+                background: color(tag-bg-darker) radial-gradient(circle, transparent 1%, color(tag-bg-darker) 1%) center/15000%;
+            }
+            
+            &:active {
+                color: color(tag-color-dark);
+                background-color: color(tag-bg-dark);
+                background-size: 100%;
+                transition: background 0s;
+            }
+        }
+
+        &.button-primary {
+            background: color(primary);
+            color: color(white);
+        }
+    }
+
+    &.ripple {
+        background-position: center;
+        transition: background 0.8s;
+        
+        &:hover {
+            background: color(primary-lighter) radial-gradient(circle, transparent 1%, color(primary-lighter) 1%) center/15000%;
+        }
+        
+        &:active {
+            background-color: color(primary-light);
+            background-size: 100%;
+            transition: background 0s;
+        }
+    }
+}
+
+div#app {
+    padding: $padding-card;
+    max-width: 1140px;
+    margin: 0 auto;
+    
+    @include large {
+        display: flex;
+        flex-direction: row;
+        justify-content: space-between;
+    }
+
+    .location-info {
+        display: flex;
+        flex-flow: row wrap;
+    
+        .location {
+            margin-right: 1em;
+        }
+
+        span.ranking-star {
+            display: inline-block;
+            clip-path: polygon(50% 0%, 61% 35%, 98% 35%, 68% 57%, 79% 91%, 50% 70%, 21% 91%, 32% 57%, 2% 35%, 39% 35%);
+            background: color(ranking-star);
+            width: 1.15em;
+            height: 1.15em;
+            vertical-align: middle;
+        }
+    }
+}
+
+div.camping-content {
+    @include large {
+        max-width: 100% / 12 * 7;
+    }
+}
+
+div.new-listings {
+    @include medium {
+        display: flex;
+        flex-flow: row wrap;
+        justify-content: space-between;
+
+        .card {
+            max-width: 48%;
+
+            img {
+                height: 50%;
+                min-height: 200px;
+            }
+        }
+    }
+
+    @include large {
+        max-width: 100% / 12 * 7;
+
+        div.card {
+            min-height: 155px;
+        }
+    }
+
+    div.card {
+        border: 1px solid color(border);
+        border-radius: 5px;
+        margin-bottom: 40px;
+
+        img {
+            max-height: 50%;
+            min-height: 200px;
+        }
+
+        div.card-info {
+            padding: $padding-card;
+            
+            h2 {
+                margin: 0 0 0.7em;
+                
+                a {
+                    color: color(base);
+                }
+            }
+
+            .location-info {
+                margin-bottom: 2em;
+            }
+        
+        }
+    }
+
+}
+
+div.popular-listings {
+    @include small {
+        display: flex;
+        flex-flow: column wrap;
+        height: 100%;
+    }
+
+    @include large {
+        max-width: 100% / 12 * 5 - 2%;
+    }
+
+    div.card {
+        margin-bottom: 30px;
+        
+        img {
+            border-radius: 3px;
+        }
+        
+        @include small {
+            display: flex;
+            flex-direction: row;
+    
+            img {
+                max-width: 48%;
+                margin-right: 2%;
+            }
+    
+            div.card-info {
+                display: flex;
+                flex-flow: column nowrap;
+                align-items: baseline;
+                justify-content: space-between;
+            }
+
+            div.tag-list {
+                height: 50%;
+                display: flex;
+                flex-flow: row wrap;
+                justify-content: flex-start;
+                align-items: flex-end;
+            }
+        }
+
+        div.card-info {
+            
+            h2 {
+                margin: 0 0 0.7em;
+                
+                a {
+                    color: color(base);
+                }
+            }
+            
+            .location-info {
+                margin-bottom: 1em;
+            }
+
+        }
+    }
+
+}
 

@@ -16,6 +16,7 @@ class CreateCampingsTable extends Migration
         Schema::create('campings', function (Blueprint $table) {
             $table->bigIncrements('id');
             $table->string('name');
+            $table->longText('description');
             $table->integer('stars');
             $table->string('website');
             $table->string('country');

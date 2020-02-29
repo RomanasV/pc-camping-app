@@ -17,6 +17,10 @@
                 {{ Form::text('country', '', ['class' => 'form-control', 'placeholder' => 'Country']) }}
             </div>
             <div class="form-group">
+                {{ Form::label('title', 'Description') }}
+                {{ Form::textArea('description', '', ['class' => 'form-control', 'placeholder' => 'Description']) }}
+            </div>
+            <div class="form-group">
                 {{ Form::label('title', 'Website') }}
                 {{ Form::url('website', '', ['class' => 'form-control', 'placeholder' => 'Website']) }}
             </div>

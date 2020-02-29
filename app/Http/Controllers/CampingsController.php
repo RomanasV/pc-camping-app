@@ -25,14 +25,14 @@ class CampingsController extends Controller
      */
     public function index()
     {
-        $campings_by_date_desc = Camping::orderBy('created_at', 'desc')->paginate(2);
-        $campings_by_date_asc = Camping::orderBy('created_at', 'asc')->take(2)->get();
-        $campings = [
+        $campings_by_date_desc = Camping::orderBy('created_at', 'desc')->paginate(4);
+        $campings_by_date_asc = Camping::orderBy('created_at', 'asc')->take(4)->get();
+        $data = [
             'campings_by_date_desc' => $campings_by_date_desc,
             'campings_by_date_asc' => $campings_by_date_asc,
         ];
 
-        return view('campings.index')->with('campings', $campings);
+        return view('campings.index')->with('data', $data);
     }
 
     /**
@@ -56,8 +56,9 @@ class CampingsController extends Controller
         $this->validate($request, [
             'name' => 'required',
             'city' => 'required',
+            'description' => 'required',
             'country' => 'required',
-            'stars' => 'required|max:255',
+            'stars' => 'required|max:5',
             'website' => 'required',
             'placeholder_image' => 'image|nullable|max:1999'
         ]);
@@ -76,6 +77,7 @@ class CampingsController extends Controller
         $camping->name = $request->input('name');
         $camping->city = $request->input('city');
         $camping->country = $request->input('country');
+        $camping->description = $request->input('description');
         $camping->stars = $request->input('stars');
         $camping->website = $request->input('website');
         $camping->user_id = auth()->user()->id;
@@ -92,9 +94,13 @@ class CampingsController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function show($id)
-    {
-        $camping = Camping::find($id);
-        return view('campings.show')->with('camping', $camping);
+    {       
+        $data = [
+            'camping' => Camping::find($id),
+            'campings_by_date_desc' => Camping::orderBy('created_at', 'desc')->paginate(4),
+        ];
+
+        return view('campings.show')->with('data', $data);
     }
 
     /**
@@ -122,7 +128,8 @@ class CampingsController extends Controller
             'name' => 'required',
             'city' => 'required',
             'country' => 'required',
-            'stars' => 'required|max:255',
+            'description' => 'required',
+            'stars' => 'required|max:5',
             'website' => 'required',
             'placeholder_image' => 'image|nullable|max:1999'
         ]);
@@ -139,6 +146,7 @@ class CampingsController extends Controller
         $camping->name = $request->input('name');
         $camping->city = $request->input('city');
         $camping->country = $request->input('country');
+        $camping->description = $request->input('description');
         $camping->stars = $request->input('stars');
         $camping->website = $request->input('website');
         if($request->hasFile('placeholder_image')) {
