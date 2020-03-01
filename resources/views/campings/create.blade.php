@@ -3,7 +3,7 @@
 @section('content')
     <h3>Create post</h3>
     {!! Form::open(['action' => 'CampingsController@store', 'method' => 'POST', 'enctype' => 'multipart/form-data']) !!}
-        <div>
+        <div class="form">
             <div class="form-group">
                 {{ Form::label('title', 'Camping Name') }}
                 {{ Form::text('name', '', ['class' => 'form-control', 'placeholder' => 'Name']) }}

@@ -1,8 +1,5 @@
 @extends('layouts.app')
 
-@if (!Auth::guest())
-    <a href="/campings/create">Create Post</a>
-@endif
 @section('content')
     @if (count($data['campings_by_date_desc']) > 0)
         <div class="new-listings">

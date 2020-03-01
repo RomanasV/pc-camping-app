@@ -27,8 +27,8 @@ $padding-button: 1.1em;
 }
 
 $small: 450px;
-$medium: 550px;
-$large: 950px;
+$medium: 600px;
+$large: 980px;
 
 @mixin small {
     @media (min-width: #{$small}) {
@@ -176,6 +176,10 @@ div#app {
     max-width: 1140px;
     margin: 0 auto;
     
+    @include medium {
+        padding-left: calc(5rem + 15px);
+    }
+
     @include large {
         display: flex;
         flex-direction: row;
@@ -323,3 +327,122 @@ div.popular-listings {
 
 }
 
+body {
+    &::-webkit-scrollbar {
+        width: 0.5rem;
+    }
+
+    &::-webkit-scrollbar-track {
+        background: color(tag-bg-darker);
+    }
+
+    &::-webkit-scrollbar-thumb {
+        background: color(tag-color);
+    }
+}
+
+nav.navbar {    
+    bottom: 0;
+    width: 100vw;
+    height: 5rem;
+    z-index: 1;
+    position: fixed;
+    background: color(tag-bg-darker);
+    transition: width 200ms ease;
+
+    .navbar-nav {
+        list-style: none;
+        padding: 0;
+        margin: 0;
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        height: 100%;
+
+        .nav-item {
+            width: 100%;
+
+            // &:last-child {
+            //     margin-top: auto;
+            // }
+
+            &.logo {
+                display: none;
+            }
+
+            .nav-link {
+                display: flex;
+                align-items: center;
+                height: 5rem;
+                color: color(tag-color-darker);
+                text-decoration: none;
+                filter: grayscale(100%) opacity(0.7);
+                transition: 400ms;
+
+                &:hover {
+                    filter: grayscale(0) opacity(1);
+                    background: color(tag-bg-dark);
+                    color: color(tag-color-dark);
+
+                    svg {
+                        color: color(primary-darker);
+                    }
+                }
+
+                .link-text {
+                    display: none;
+                    margin-left: 1rem;
+                }
+
+                svg {
+                    min-width: 2rem;
+                    margin: 0 auto;
+                    color: color(primary);
+                    transition: 600ms;
+
+                    @include medium {
+                        margin: 0 1.5rem;
+                    }
+                }
+            }
+        }
+    }
+
+    @include medium {
+        width: 5rem;
+        top: 0;
+        height: 100vh;
+
+        &:hover {
+            width: 16rem;
+    
+            .nav-item .nav-link .link-text {
+                display: inline;
+                transition: 500ms;
+            }
+
+            .logo svg {
+                display: none;
+                transition: 500ms;
+            }
+        }
+
+        .navbar-nav {
+            flex-direction: column;
+            
+            .nav-item.logo {
+                display: block;
+                font-weight: bold;
+                text-transform: uppercase;
+                margin-bottom: 1rem;
+                text-align: center;
+                color: color(tag-color-dark);
+                background: color(tag-bg-dark);
+                font-size: 2rem;
+                letter-spacing: 0.3ch;
+                width: 100%;
+            } 
+        } 
+    }
+    
+}
