@@ -1,19 +1,47 @@
-// Body
-$body-bg: white;
+$colors: (
+    base: #2c3643,
+    black: black,
+    white: white,
+    border: #ebebeb,
+    primary: #fc4c02,
+    primary-lighter: lighten(#fc4c02, 5%),
+    primary-light: lighten(#fc4c02, 15%),
+    primary-darker: darken(#fc4c02, 3%),
+    primary-dark: darken(#fc4c02, 10%),
+    ranking-star: #fac917,
+    tag-color: #b3b0ac,
+    tag-color-darker: darken(#b3b0ac, 5%),
+    tag-color-dark: darken(#b3b0ac, 15%),
+    tag-bg: #f1f1f1,
+    tag-bg-darker: darken(#f1f1f1, 5%),
+    tag-bg-dark: darken(#f1f1f1, 15%),
+);
 
-// Typography
-$font-family-sans-serif: "Nunito", sans-serif;
-$font-size-base: 0.9rem;
-$line-height-base: 1.6;
+$padding-card: 15px 15px 25px;
+$padding-button: 1.1em;
 
-// Colors
-$blue: #3490dc;
-$indigo: #6574cd;
-$purple: #9561e2;
-$pink: #f66d9b;
-$red: #e3342f;
-$orange: #f6993f;
-$yellow: #ffed4a;
-$green: #38c172;
-$teal: #4dc0b5;
-$cyan: #6cb2eb;
+@function color($color-name) {
+    @return map-get($colors, $color-name);
+}
+
+$small: 450px;
+$medium: 600px;
+$large: 980px;
+
+@mixin small {
+    @media (min-width: #{$small}) {
+        @content;
+    }
+}
+
+@mixin medium {
+    @media (min-width: #{$medium}) {
+        @content;
+    }
+}
+
+@mixin large {
+    @media (min-width: #{$large}) {
+        @content;
+    }
+}
