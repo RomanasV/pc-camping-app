@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Camping;
+use App\User;
 
 class DashboardController extends Controller
 {
@@ -24,7 +25,9 @@ class DashboardController extends Controller
      */
     public function index()
     {
-        $campings = Camping::orderBy('created_at', 'desc')->paginate(10);
+        $user_id = auth()->user()->id;
+        $user = User::find($user_id); 
+        $campings = $user->campings()->orderBy('created_at', 'desc')->paginate(10);
         return view('dashboard')->with('campings', $campings);
     }
 }

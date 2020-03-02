@@ -1,38 +1,49 @@
 @extends('layouts.app')
 
 @section('content')
-    <h3>Create post</h3>
+<div class="form">
+    <h1 class="center">Create Camping</h1>
     {!! Form::open(['action' => 'CampingsController@store', 'method' => 'POST', 'enctype' => 'multipart/form-data']) !!}
-        <div class="form">
+        <div class="form-group">
+            {{ Form::text('name', '', ['class' => 'form-control', 'autocomplete' => 'off', 'required']) }}
+            {!! htmlspecialchars_decode(Form::label('title', '<span class="content-name">Camping Name</span>', ['class' => 'label-name'])) !!}
+        </div>
+        <div class="form-group">
+            {{ Form::text('city', '', ['class' => 'form-control', 'autocomplete' => 'off', 'required']) }}
+            {!! htmlspecialchars_decode(Form::label('title', '<span class="content-name">City</span>', ['class' => 'label-name'])) !!}
+        </div>
+        <div class="form-group">
+            {{ Form::text('country', '', ['class' => 'form-control', 'autocomplete' => 'off', 'required']) }}
+            {!! htmlspecialchars_decode(Form::label('title', '<span class="content-name">Country</span>', ['class' => 'label-name'])) !!}
+        </div>
+        <div class="form-group">
+            {{ Form::textArea('description', '', ['class' => 'form-control', 'autocomplete' => 'off', 'required', 'rows' => '4']) }}
+            {!! htmlspecialchars_decode(Form::label('title', '<span class="content-name">Description</span>', ['class' => 'label-name'])) !!}
+        </div>
+        <div class="form-group">
+            {{ Form::url('website', '', ['class' => 'form-control', 'required']) }}
+            {!! htmlspecialchars_decode(Form::label('title', '<span class="content-name">Website</span>', ['class' => 'label-name'])) !!}
+        </div>
+        <div class="form-group">
+            {{ Form::number('ranking', '', ['class' => 'form-control', 'step' => '0.1', 'required']) }}
+            {!! htmlspecialchars_decode(Form::label('title', '<span class="content-name">Ranking</span>', ['class' => 'label-name'])) !!}
+        </div>
+        <div class="form-group">
+            {{ Form::text('tags', '', ['class' => 'form-control', 'required']) }}
+            {!! htmlspecialchars_decode(Form::label('title', '<span class="content-name">Tags (separate by commas)</span>', ['class' => 'label-name'])) !!}
+        </div>
+        <div class="form-group-inline">
             <div class="form-group">
-                {{ Form::label('title', 'Camping Name') }}
-                {{ Form::text('name', '', ['class' => 'form-control', 'placeholder' => 'Name']) }}
-            </div>
-            <div class="form-group">
-                {{ Form::label('title', 'City') }}
-                {{ Form::text('city', '', ['class' => 'form-control', 'placeholder' => 'City']) }}
-            </div>
-            <div class="form-group">
-                {{ Form::label('title', 'Country') }}
-                {{ Form::text('country', '', ['class' => 'form-control', 'placeholder' => 'Country']) }}
-            </div>
-            <div class="form-group">
-                {{ Form::label('title', 'Description') }}
-                {{ Form::textArea('description', '', ['class' => 'form-control', 'placeholder' => 'Description']) }}
-            </div>
-            <div class="form-group">
-                {{ Form::label('title', 'Website') }}
-                {{ Form::url('website', '', ['class' => 'form-control', 'placeholder' => 'Website']) }}
-            </div>
-            <div class="form-group">
-                {{ Form::label('title', 'Stars') }}
                 {{ Form::selectRange('stars', 1, 5) }}
+                {!! htmlspecialchars_decode(Form::label('title', 'Stars', ['class' => 'label-name'])) !!}
             </div>
             <div class="form-group">
                 {{ Form::file('placeholder_image') }}
+                {!! htmlspecialchars_decode(Form::label('title', 'Image', ['class' => 'label-name'])) !!}
             </div>
-
-            {{ Form::submit('Submit', ['class' => 'btn']) }}
         </div>
+
+        {{ Form::submit('Submit', ['class' => 'button button-primary ripple']) }}
     {!! Form::close() !!}
+</div>
 @endsection

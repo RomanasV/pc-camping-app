@@ -16,12 +16,13 @@ class CreateCampingsTable extends Migration
         Schema::create('campings', function (Blueprint $table) {
             $table->bigIncrements('id');
             $table->string('name');
-            $table->longText('description');
+            $table->text('description');
             $table->integer('stars');
             $table->string('website');
             $table->string('country');
             $table->string('city');
-
+            $table->string('tags');
+            $table->float('ranking', 3, 1);
             $table->timestamps();
         });
     }

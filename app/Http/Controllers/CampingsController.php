@@ -25,14 +25,8 @@ class CampingsController extends Controller
      */
     public function index()
     {
-        $campings_by_date_desc = Camping::orderBy('created_at', 'desc')->paginate(4);
-        $campings_by_date_asc = Camping::orderBy('created_at', 'asc')->take(4)->get();
-        $data = [
-            'campings_by_date_desc' => $campings_by_date_desc,
-            'campings_by_date_asc' => $campings_by_date_asc,
-        ];
-
-        return view('campings.index')->with('data', $data);
+        $campings = Camping::orderBy('created_at', 'desc')->paginate(4);
+        return view('campings.index')->with('campings', $campings);
     }
 
     /**
@@ -58,8 +52,10 @@ class CampingsController extends Controller
             'city' => 'required',
             'description' => 'required',
             'country' => 'required',
-            'stars' => 'required|max:5',
+            'stars' => 'required|numeric|max:5',
             'website' => 'required',
+            'ranking' => 'nullable|numeric|max:10',
+            'tags' => 'string|nullable|max:30',
             'placeholder_image' => 'image|nullable|max:1999'
         ]);
 
@@ -80,6 +76,8 @@ class CampingsController extends Controller
         $camping->description = $request->input('description');
         $camping->stars = $request->input('stars');
         $camping->website = $request->input('website');
+        $camping->ranking = $request->input('ranking');
+        $camping->tags = $request->input('tags');
         $camping->user_id = auth()->user()->id;
         $camping->placeholder_image = $image_name_to_store;
         $camping->save();
@@ -129,8 +127,10 @@ class CampingsController extends Controller
             'city' => 'required',
             'country' => 'required',
             'description' => 'required',
-            'stars' => 'required|max:5',
+            'stars' => 'required|numeric|max:5',
             'website' => 'required',
+            'ranking' => 'nullable|numeric|max:10',
+            'tags' => 'string|nullable|max:30',
             'placeholder_image' => 'image|nullable|max:1999'
         ]);
 
@@ -148,6 +148,8 @@ class CampingsController extends Controller
         $camping->country = $request->input('country');
         $camping->description = $request->input('description');
         $camping->stars = $request->input('stars');
+        $camping->ranking = $request->input('ranking');
+        $camping->tags = $request->input('tags');
         $camping->website = $request->input('website');
         if($request->hasFile('placeholder_image')) {
             Storage::delete('/public/placeholder_images/' . $camping->placeholder_image);

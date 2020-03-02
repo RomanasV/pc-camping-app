@@ -21,28 +21,29 @@
                             @endfor
                         </div>
                     </div>
-
-                    <h3 class="ranking">Very good 9.2 / 10</h3>
                             
                     <p>{!! nl2br(e($data['camping']->description)) !!}</p>
 
                     <a href="{{$data['camping']->website}}" target="_blank" class="button button-primary ripple">Where to book?</a>
                     @if (!Auth::guest())
-                    {{-- Add an edit and delete icons in this place --}}
-                    {{-- <a href="/campings/{{$camping->id}}/edit">Edit</a>
-                    
-                    {!! Form::open(['action' => ['CampingsController@destroy', $camping->id], 'method' => 'POST']) !!}
-                    {{ Form::hidden('_method', 'DELETE') }}
-                    {{ Form::submit('Delete', ['class' => 'btn']) }}
-                    {!! Form::close() !!} --}}
+                        @if (Auth::user()->id == $data['camping']->user_id)
+                            <div class="controls">
+                                <a href="/campings/{{$data['camping']->id}}/edit" class="button button-primary ripple">Edit</a>
+                                
+                                {!! Form::open(['action' => ['CampingsController@destroy', $data['camping']->id], 'method' => 'POST']) !!}
+                                {{ Form::hidden('_method', 'DELETE') }}
+                                {{ Form::submit('Delete', ['class' => 'button color-secondary ripple']) }}
+                                {!! Form::close() !!}
+                            </div>
+                        @endif
                     @endif
                 </div>
             </div>
         </div>
 
 
+@include('inc.popularList')
     
-    @include('inc.popularList')
     {{-- @if (!Auth::guest())
         <a href="/campings/{{$camping->id}}/edit">Edit</a>
         

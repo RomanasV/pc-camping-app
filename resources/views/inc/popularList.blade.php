@@ -24,9 +24,10 @@
                     <h3 class="ranking">Very good 9.2 / 10</h3>
                     
                     <div class="tag-list">
-                        <a href="#" class="button button-tag ripple">Paris</a>
-                        <a href="#" class="button button-tag ripple">Eiffel Tower</a>
-                        <a href="#" class="button button-tag ripple">Trees</a>
+                   
+                        @foreach (explode(',', $camping->tags) as $tag)
+                            <a href="#" class="button button-tag ripple">{{trim($tag)}}</a>                            
+                        @endforeach
                     </div>
                 </div>
             </div>

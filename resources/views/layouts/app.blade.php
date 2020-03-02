@@ -9,9 +9,6 @@
 
     <title>{{ config('app.name', 'Laravel') }}</title>
 
-    <!-- Scripts -->
-    <script src="{{ asset('js/app.js') }}" defer></script>
-
     <!-- Fonts -->
     <link rel="dns-prefetch" href="//fonts.gstatic.com">
     <link href="https://fonts.googleapis.com/css?family=Nunito" rel="stylesheet">
@@ -21,9 +18,10 @@
 </head>
 <body>
     @include('inc.navbar')
+    @include('inc.messages')
     <div id="app">
-        @include('inc.messages')
         @yield('content')
     </div>
+    <script src="{{ asset('js/app.js') }}" defer></script>
 </body>
 </html>
