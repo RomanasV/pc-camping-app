@@ -152,7 +152,9 @@ class CampingsController extends Controller
         $camping->tags = $request->input('tags');
         $camping->website = $request->input('website');
         if($request->hasFile('placeholder_image')) {
-            Storage::delete('/public/placeholder_images/' . $camping->placeholder_image);
+            if($camping->placeholder_image != 'default_placeholder.jpg') {
+                Storage::delete('/public/placeholder_images/' . $camping->placeholder_image);
+            }
             $camping->placeholder_image = $image_name_to_store;
         }
         $camping->save();
