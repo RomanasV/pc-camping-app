@@ -935,7 +935,7 @@ div.camping-content div.card {
 div.new-listings div.card img,
 div.camping-content div.card img {
   max-height: 50%;
-  min-height: 200px;
+  min-height: 300px;
 }
 
 div.new-listings div.card div.card-info,

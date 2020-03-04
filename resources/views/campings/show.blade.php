@@ -1,6 +1,5 @@
 @extends('layouts.app')
 
-<a href="/campings">Go Back</a>
 @section('content')
     <div class="camping-content">
         <div class="card">
