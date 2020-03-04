@@ -131,7 +131,7 @@ input[type=submit].ripple:active {
   color: #cbcbcb;
   border: 1px solid #ebebeb;
   margin: 15px auto 0;
-  padding: 15px 15px 25px;
+  padding: 15px;
   border-radius: 5px;
   font-size: 1.2em;
   font-weight: normal;
@@ -161,7 +161,7 @@ input[type=submit].ripple:active {
 .form form .form-group {
   width: 100%;
   position: relative;
-  margin-bottom: 0.5em;
+  margin-bottom: 1.5em;
   overflow: hidden;
 }
 
@@ -170,8 +170,7 @@ input[type=submit].ripple:active {
   width: 100%;
   color: #2c3643;
   font-weight: normal;
-  padding-top: 25px;
-  padding-bottom: 3px;
+  padding: 25px 0 3px 0;
   border: none;
   outline: none;
 }
@@ -200,7 +199,8 @@ input[type=submit].ripple:active {
 
 .form form .form-group textarea:focus + .label-name .content-name,
 .form form .form-group textarea:valid + .label-name .content-name {
-  transform: translateY(-550%);
+  transform: translateY(0);
+  height: 100%;
 }
 
 .form form .form-group label {
@@ -227,7 +227,7 @@ input[type=submit].ripple:active {
 
 .form form .form-group .content-name {
   position: absolute;
-  bottom: 5px;
+  bottom: 0;
   left: 0;
   transition: all 0.3s ease;
 }
@@ -248,6 +248,14 @@ input[type=submit].ripple:active {
   bottom: 0;
   width: 40%;
   margin-bottom: 3px;
+}
+
+.form form .form-group-inline select + label {
+  border: none;
+}
+
+.form form .form-group-inline input[type=file] + label {
+  border: none;
 }
 
 nav.navbar {
@@ -1052,6 +1060,10 @@ li.camping-item {
   display: flex;
   flex-flow: row wrap;
   justify-content: flex-start;
+  color: #2c3643;
+}
+
+li.camping-item a {
   color: #2c3643;
 }
 

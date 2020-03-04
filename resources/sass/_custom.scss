@@ -267,6 +267,10 @@ li.camping-item {
     justify-content: flex-start;
     color: color(base);
 
+    a {
+        color: color(base);
+    }
+
     h3, span {
         width: 100%;
         margin-bottom: 8px;

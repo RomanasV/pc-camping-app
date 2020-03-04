@@ -17,7 +17,7 @@
             {!! htmlspecialchars_decode(Form::label('title', '<span class="content-name">Country</span>', ['class' => 'label-name'])) !!}
         </div>
         <div class="form-group">
-            {{ Form::textArea('description', '', ['class' => 'form-control', 'autocomplete' => 'off', 'required', 'rows' => '4']) }}
+            {{ Form::textArea('description', '', ['class' => 'form-control', 'autocomplete' => 'off', 'required', 'rows' => '8']) }}
             {!! htmlspecialchars_decode(Form::label('title', '<span class="content-name">Description</span>', ['class' => 'label-name'])) !!}
         </div>
         <div class="form-group">
