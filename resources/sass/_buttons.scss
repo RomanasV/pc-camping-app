@@ -1,0 +1,95 @@
+a, button, input[type="submit"] {
+    text-decoration: none;
+    border: none;
+    cursor: pointer;
+
+    &.center {
+        text-align: center;
+        display: block;
+    }
+
+    &.right {
+        text-align: center;
+        display: block;
+    }
+
+    &.link {
+        text-decoration: none;
+        color: color(primary);
+        vertical-align: middle;
+
+        &.color-secondary {
+            color: color(tag-color-darker);
+        }
+
+        &:hover {
+            color: color(primary-darker)
+        }
+
+        &:active {
+            color: color(primary-dark)
+        }
+
+        &:not(.default-link):first-of-type:after {
+            content: '';
+            display: inline-block;
+            height: 0.4em;
+            width: 0.4em;
+            border-radius: 50%;
+            background: color(primary);
+            vertical-align: middle;
+            margin: 0 0.45em;
+        }
+    }
+
+    &.button {
+        display: block;
+        padding: $padding-button;
+        margin: 1.3em 0 1.2em;
+        text-align: center;
+        border-radius: 5px;
+        
+        &.button-tag {
+            display: inline-block;
+            color: color(tag-color);
+            background: color(tag-bg);
+            font-size: 0.85em;
+            padding: 0.9em 0.65em;
+            margin: 0.65em 0.65em 0 0;
+            border-radius: 2px;
+            
+            &:hover {
+                color: color(tag-color-darker);
+                background: color(tag-bg-darker) radial-gradient(circle, transparent 1%, color(tag-bg-darker) 1%) center/15000%;
+            }
+            
+            &:active {
+                color: color(tag-color-dark);
+                background-color: color(tag-bg-dark);
+                background-size: 100%;
+                transition: background 0s;
+            }
+        }
+
+        &.button-primary {
+            background: color(primary);
+            color: color(white);
+        }
+        
+    }
+
+    &.ripple {
+        background-position: center;
+        transition: background 0.8s;
+        
+        &:hover {
+            background: color(primary-lighter) radial-gradient(circle, transparent 1%, color(primary-lighter) 1%) center/15000%;
+        }
+        
+        &:active {
+            background-color: color(primary-light);
+            background-size: 100%;
+            transition: background 0s;
+        }
+    }
+}

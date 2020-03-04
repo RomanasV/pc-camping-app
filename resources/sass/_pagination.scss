@@ -1,0 +1,29 @@
+ul.pagination {
+    font-size: 1.3em;
+    margin-bottom: 1em;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    text-align: center;
+    
+    li {
+        margin-right: 15px;
+
+        a {
+            color: color(base);
+        }
+
+        &.disabled {
+            a {
+                pointer-events: none;
+                color: color(tag-color);
+            }
+        }
+
+        &.active {
+            a {
+                color: color(primary);
+            }
+        }
+    }
+}

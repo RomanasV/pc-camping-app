@@ -39,99 +39,21 @@ img {
     text-align: center;
 }
 
-a, button, input[type="submit"] {
-    text-decoration: none;
-    border: none;
-    cursor: pointer;
+.container {
+    width: 100%;
+}
 
-    &.center {
-        text-align: center;
-        display: block;
+body {
+    &::-webkit-scrollbar {
+        width: 0.5rem;
     }
 
-    &.right {
-        text-align: center;
-        display: block;
+    &::-webkit-scrollbar-track {
+        background: color(tag-bg-darker);
     }
 
-    &.link {
-        text-decoration: none;
-        color: color(primary);
-        vertical-align: middle;
-
-        &.color-secondary {
-            color: color(tag-color-darker);
-        }
-
-        &:hover {
-            color: color(primary-darker)
-        }
-
-        &:active {
-            color: color(primary-dark)
-        }
-
-        &:not(.default-link):first-of-type:after {
-            content: '';
-            display: inline-block;
-            height: 0.4em;
-            width: 0.4em;
-            border-radius: 50%;
-            background: color(primary);
-            vertical-align: middle;
-            margin: 0 0.45em;
-        }
-    }
-
-    &.button {
-        display: block;
-        padding: $padding-button;
-        margin: 1.3em 0 1.2em;
-        text-align: center;
-        border-radius: 5px;
-        
-        &.button-tag {
-            display: inline-block;
-            color: color(tag-color);
-            background: color(tag-bg);
-            font-size: 0.85em;
-            padding: 0.9em 0.65em;
-            margin: 0.65em 0.65em 0 0;
-            border-radius: 2px;
-            
-            &:hover {
-                color: color(tag-color-darker);
-                background: color(tag-bg-darker) radial-gradient(circle, transparent 1%, color(tag-bg-darker) 1%) center/15000%;
-            }
-            
-            &:active {
-                color: color(tag-color-dark);
-                background-color: color(tag-bg-dark);
-                background-size: 100%;
-                transition: background 0s;
-            }
-        }
-
-        &.button-primary {
-            background: color(primary);
-            color: color(white);
-        }
-        
-    }
-
-    &.ripple {
-        background-position: center;
-        transition: background 0.8s;
-        
-        &:hover {
-            background: color(primary-lighter) radial-gradient(circle, transparent 1%, color(primary-lighter) 1%) center/15000%;
-        }
-        
-        &:active {
-            background-color: color(primary-light);
-            background-size: 100%;
-            transition: background 0s;
-        }
+    &::-webkit-scrollbar-thumb {
+        background: color(tag-color);
     }
 }
 
@@ -168,10 +90,6 @@ div#app {
             vertical-align: middle;
         }
     }
-}
-
-.container {
-    width: 100%;
 }
 
 div.camping-content {
@@ -320,244 +238,6 @@ div.popular-listings {
 
 }
 
-body {
-    &::-webkit-scrollbar {
-        width: 0.5rem;
-    }
-
-    &::-webkit-scrollbar-track {
-        background: color(tag-bg-darker);
-    }
-
-    &::-webkit-scrollbar-thumb {
-        background: color(tag-color);
-    }
-}
-
-nav.navbar {    
-    bottom: 0;
-    width: 100vw;
-    height: 5rem;
-    z-index: 1;
-    position: fixed;
-    background: color(tag-bg-darker);
-    transition: width 200ms ease;
-
-    .navbar-nav {
-        list-style: none;
-        padding: 0;
-        margin: 0;
-        display: flex;
-        flex-direction: row;
-        align-items: center;
-        height: 100%;
-
-        .nav-item {
-            width: 100%;
-
-            &.logo {
-                display: none;
-            }
-
-            .nav-link {
-                display: flex;
-                align-items: center;
-                height: 5rem;
-                color: color(tag-color-darker);
-                text-decoration: none;
-                filter: grayscale(100%) opacity(0.7);
-                transition: 400ms;
-
-                &:hover {
-                    filter: grayscale(0) opacity(1);
-                    background: color(tag-bg-dark);
-                    color: color(tag-color-dark);
-
-                    svg {
-                        color: color(primary-darker);
-                    }
-                }
-
-                .link-text {
-                    display: none;
-                    margin-left: 1rem;
-                }
-
-                svg {
-                    min-width: 2rem;
-                    margin: 0 auto;
-                    color: color(primary);
-                    transition: 600ms;
-
-                    @include medium {
-                        margin: 0 1.5rem;
-                    }
-                }
-            }
-        }
-    }
-
-    @include medium {
-        width: 5rem;
-        top: 0;
-        height: 100vh;
-
-        &:hover {
-            width: 16rem;
-    
-            .nav-item .nav-link .link-text {
-                display: inline;
-                transition: 500ms;
-            }
-
-            .logo svg {
-                display: none;
-                transition: 500ms;
-            }
-        }
-
-        .navbar-nav {
-            flex-direction: column;
-            
-            .nav-item.logo {
-                display: block;
-                font-weight: bold;
-                text-transform: uppercase;
-                margin-bottom: 1rem;
-                text-align: center;
-                color: color(tag-color-dark);
-                background: color(tag-bg-dark);
-                font-size: 2rem;
-                letter-spacing: 0.3ch;
-                width: 100%;
-            } 
-        } 
-    }
-    
-}
-
-.form {
-    max-width: 500px;
-    width: 100%;
-    color: color(tag-bg-dark);
-    border: 1px solid color(border);
-    margin: 15px auto 0;
-    padding: $padding-card;
-    border-radius: 5px;
-    font-size: 1.2em;
-    font-weight: normal;
-
-    form {
-        height: 100%;
-        display: flex;
-        justify-content: space-around;
-        align-items: center;
-        flex-direction: column;
-
-        &.login-form {
-            .form-check {
-                margin-right: auto;
-                margin-top: 10px;
-            }
-        }
-
-        span.invalid-feedback {
-            position: absolute;
-            right: 0;
-            font-size: 0.8em;
-            color: color(primary-light);
-            text-decoration: underline;
-        }
-
-        .form-group {
-            width: 100%;
-            position: relative;
-            margin-bottom: 0.5em;
-            overflow: hidden;
-
-            input, textarea {
-                width: 100%;
-                color: color(base);
-                font-weight: normal;
-                padding-top: 25px;
-                padding-bottom: 3px;
-                border: none;
-                outline: none;
-
-                &:focus + .label-name .content-name,
-                &:valid + .label-name .content-name {
-                    transform: translateY(-150%);
-                    font-size: 0.8em;
-                    font-weight: bolder;
-                    color: color(primary-light);
-                }
-
-                &:focus + .label-name::after,
-                &:valid + .label-name::after {
-                    transform: translateX(0);
-                }
-            }
-
-            textarea {
-                margin-top: 25px;
-                padding-top: 0;
-
-                &:focus + .label-name .content-name,
-                &:valid + .label-name .content-name {
-                    transform: translateY(-550%);
-                }
-            }
-
-            label {
-                position: absolute;
-                bottom: 0;
-                left: 0;
-                width: 100%;
-                height: 100%;
-                pointer-events: none;
-                border-bottom: 1px solid color(tag-color);
-
-                &:after {
-                    content: '';
-                    position: absolute;
-                    left: 0;
-                    bottom: -1px;
-                    height: 100%;
-                    width: 100%;
-                    border-bottom: 3px solid color(primary);
-                    transform: translateX(-100%);
-                    transition: transform 0.3s ease;
-                }
-            }
-            
-            .content-name {
-                position: absolute;
-                bottom: 5px;
-                left: 0;
-                transition: all 0.3s ease;
-            }
-        }
-
-        .form-group-inline {
-            display: flex;
-            flex-direction: row;
-            width: 100%;
-            justify-content: space-between;
-
-            label:after {
-                content: none;
-            }
-
-            select {
-                position: absolute;
-                bottom: 0;
-                width: 40%;
-                margin-bottom: 3px;
-            }
-        }
-    }
-}
-
 div.warning {
     display: block;
     width: 100%;
@@ -603,34 +283,4 @@ li.camping-item {
 .controls {
     max-width: 200px;
     margin: 0 auto;
-}
-
-ul.pagination {
-    font-size: 1.3em;
-    margin-bottom: 1em;
-    width: 100%;
-    display: flex;
-    justify-content: center;
-    text-align: center;
-    
-    li {
-        margin-right: 15px;
-
-        a {
-            color: color(base);
-        }
-
-        &.disabled {
-            a {
-                pointer-events: none;
-                color: color(tag-color);
-            }
-        }
-
-        &.active {
-            a {
-                color: color(primary);
-            }
-        }
-    }
 }
