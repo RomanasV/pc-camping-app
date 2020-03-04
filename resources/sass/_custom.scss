@@ -101,6 +101,10 @@ div.camping-content {
 div.camping-content div.card {
     max-width: 100%;
     width: 100%;
+
+    img {
+        min-height: 300px;
+    }
 }
 
 div.new-listings,
@@ -138,10 +142,20 @@ div.camping-content {
         border: 1px solid color(border);
         border-radius: 5px;
         margin-bottom: 40px;
+        position: relative;
+
+        svg.heart-icon {
+            position: absolute;
+            top: 8px;
+            right: 8px;
+            height: 20px;
+            width: 20px;
+            color: color(white);
+            opacity: 0.6;
+        }
 
         img {
             max-height: 50%;
-            min-height: 300px;
         }
 
         div.card-info {
@@ -189,6 +203,17 @@ div.popular-listings {
 
     div.card {
         margin-bottom: 30px;
+        position: relative;
+
+        svg.heart-icon {
+            position: absolute;
+            top: 8px;
+            right: calc(52% + 8px);
+            height: 20px;
+            width: 20px;
+            color: color(white);
+            opacity: 0.6;
+        }
         
         img {
             border-radius: 3px;

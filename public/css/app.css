@@ -886,6 +886,10 @@ div.camping-content div.card {
   width: 100%;
 }
 
+div.camping-content div.card img {
+  min-height: 300px;
+}
+
 @media (min-width: 600px) {
   div.new-listings,
   div.camping-content {
@@ -930,12 +934,23 @@ div.camping-content div.card {
   border: 1px solid #ebebeb;
   border-radius: 5px;
   margin-bottom: 40px;
+  position: relative;
+}
+
+div.new-listings div.card svg.heart-icon,
+div.camping-content div.card svg.heart-icon {
+  position: absolute;
+  top: 8px;
+  right: 8px;
+  height: 20px;
+  width: 20px;
+  color: white;
+  opacity: 0.6;
 }
 
 div.new-listings div.card img,
 div.camping-content div.card img {
   max-height: 50%;
-  min-height: 300px;
 }
 
 div.new-listings div.card div.card-info,
@@ -988,6 +1003,17 @@ div.camping-content .controls a {
 
 div.popular-listings div.card {
   margin-bottom: 30px;
+  position: relative;
+}
+
+div.popular-listings div.card svg.heart-icon {
+  position: absolute;
+  top: 8px;
+  right: calc(52% + 8px);
+  height: 20px;
+  width: 20px;
+  color: white;
+  opacity: 0.6;
 }
 
 div.popular-listings div.card img {
