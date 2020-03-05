@@ -11,6 +11,10 @@ ul.pagination {
 
         a {
             color: color(base);
+
+            &:hover {
+                color: color(primary);
+            }
         }
 
         &.disabled {

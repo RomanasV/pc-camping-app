@@ -382,6 +382,10 @@ ul.pagination li a {
   color: #2c3643;
 }
 
+ul.pagination li a:hover {
+  color: #fc4c02;
+}
+
 ul.pagination li.disabled a {
   pointer-events: none;
   color: #b3b0ac;
