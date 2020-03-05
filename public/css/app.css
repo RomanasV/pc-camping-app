@@ -951,6 +951,7 @@ div.camping-content div.card svg.heart-icon {
 div.new-listings div.card img,
 div.camping-content div.card img {
   max-height: 50%;
+  border-radius: 5px 5px 0 0;
 }
 
 div.new-listings div.card div.card-info,
